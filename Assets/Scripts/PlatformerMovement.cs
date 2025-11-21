@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
             /////////////// INFORMATION ///////////////
 // This script automatically adds a Rigidbody2D, CapsuleCollider2D and CircleCollider2D component in the inspector.
@@ -94,6 +95,14 @@ public class PlatformerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
         
         // Write movement animation code here. (Suggestion: send your current velocity into the Animator for both the x- and y-axis.)
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 
     private bool IsGrounded()
